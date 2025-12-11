@@ -7,6 +7,10 @@ A comprehensive collection of algorithms, data structures, and theory for compet
 ## Table of Contents
 
 - [Template & Macros](#template--macros)
+- [Data Structures Implementation](#data-structures-implementation)
+  - [Linear Structures](#linear-structures)
+  - [Stacks & Queues](#stacks--queues)
+  - [Non-Linear Structures](#non-linear-structures)
 - [Mathematics & Number Theory](#mathematics--number-theory)
   - [Prime Checking](#prime-checking)
   - [Base Conversion](#base-conversion)
@@ -62,6 +66,138 @@ int main() {
     return 0;
 }
 ```
+
+---
+
+## Data Structures Implementation
+
+This section covers the custom data structures I've implemented from scratch in the [College_Work repository](https://github.com/Moza202/College_Work). Each implementation includes detailed operations and practical applications.
+
+### Linear Structures
+
+#### Singly Linked List
+
+**File**: [Linked_list1.cpp](https://github.com/Moza202/College_Work/blob/main/Linked_list1.cpp)
+
+A dynamic linear data structure where each node contains data and a pointer to the next node.
+
+**Key Features**:
+- Insert at head, tail, or position
+- Delete by value or position
+- Advanced operations: Reverse, Copy, Find Min/Max
+- Display and traversal
+- Time Complexity: O(n) for most operations
+
+**Use Cases**: Dynamic memory allocation, implementing other data structures
+
+#### Doubly Linked List
+
+**File**: [Doublylinkedlist.cpp](https://github.com/Moza202/College_Work/blob/main/Doublylinkedlist.cpp)
+
+Each node contains data and two pointers (next and previous), enabling bidirectional traversal.
+
+**Key Features**:
+- Bidirectional traversal
+- Easier deletion (no need to track previous node)
+- Insert and delete from both ends
+- Time Complexity: O(n) for search, O(1) for insert/delete at known position
+
+**Use Cases**: Browser history, undo/redo functionality, music playlists
+
+#### Circular Linked List
+
+**File**: [CLL.cpp](https://github.com/Moza202/College_Work/blob/main/CLL.cpp)
+
+The last node points back to the head, forming a circle.
+
+**Key Features**:
+- No NULL pointers (tail points to head)
+- Continuous traversal possible
+- Useful for round-robin scheduling
+- Time Complexity: Similar to singly linked list
+
+**Use Cases**: Round-robin scheduling, multiplayer games, circular buffers
+
+### Stacks & Queues
+
+#### Stack (Array-Based)
+
+**File**: [Stack_using_array.cpp](https://github.com/Moza202/College_Work/blob/main/Stack_using_array.cpp)
+
+LIFO (Last In First Out) structure with fixed size.
+
+**Key Operations**:
+- `push()`: Add element to top
+- `pop()`: Remove element from top
+- `peek()`: View top element
+- `isEmpty()` / `isFull()`: Check status
+
+**Applications**:
+- Expression evaluation (Infix to Postfix conversion)
+- Palindrome checking
+- Backtracking algorithms
+- Function call stack
+
+**Time Complexity**: O(1) for all operations
+
+#### Stack (Dynamic - Linked List)
+
+**File**: [Stack_using_linkedlist.cpp](https://github.com/Moza202/College_Work/blob/main/Stack_using_linkedlist.cpp)
+
+LIFO structure with flexible memory usage.
+
+**Advantages over Array-Based**:
+- No size limit (dynamic growth)
+- No wasted memory
+- Better for unpredictable sizes
+
+**Time Complexity**: O(1) for push/pop
+
+#### Circular Queue
+
+**File**: [Queue.cpp](https://github.com/Moza202/College_Work/blob/main/Queue.cpp)
+
+FIFO (First In First Out) structure using circular array implementation.
+
+**Key Operations**:
+- `enqueue()`: Add element to rear
+- `dequeue()`: Remove element from front
+- Bulk operations support
+- Efficient space utilization (circular wrapping)
+
+**Applications**:
+- CPU scheduling
+- Printer queue management
+- BFS traversal in graphs
+
+**Time Complexity**: O(1) for enqueue/dequeue
+
+### Non-Linear Structures
+
+#### Binary Search Tree (BST)
+
+**File**: [Tree.cpp](https://github.com/Moza202/College_Work/blob/main/Tree.cpp)
+
+Hierarchical data structure where each node has at most two children, with left child < parent < right child.
+
+**Key Operations**:
+- `insert()`: Add new node maintaining BST property
+- `search()`: Find element in O(log n) average case
+- `delete()`: Remove node with three cases (leaf, one child, two children)
+- `inorder()`, `preorder()`, `postorder()`: Different traversal methods
+- `size()`: Count total nodes
+- `depth()`: Find tree height
+
+**BST Properties**:
+- Inorder traversal gives sorted sequence
+- Search, insert, delete: O(log n) average, O(n) worst case
+- Self-balancing variants (AVL, Red-Black) guarantee O(log n)
+
+**Applications**:
+- Database indexing
+- File system organization
+- Expression parsing
+- Auto-complete features
 
 ---
 
