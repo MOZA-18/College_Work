@@ -32,9 +32,9 @@ A comprehensive reference file (`Help.txt`) compiled to aid in revision and unde
     * *Recursive:* Merge Sort and Quick Sort.
     * *Non-Comparison:* Counting Sort and Radix Sort.
     * *Comparison Table:* A summary of Best/Average/Worst time complexities and Space complexity for each.
-***STL Containers**: Usage patterns and method summaries for **Vectors**, **Deque**, **Pairs**, and **Sets**[cite: 13, 30, 32].
-* **Data Structure Comparisons**: Differences between **Ordered Containers** (Red-Black Trees) and **Unordered Containers** (Hash Tables) regarding performance (O(log n) vs O(1)) and memory usage[cite: 20, 23].
-***Mathematical Utilities**: Functions for Base Conversion (Decimal to Base-N), Prime Checking, and Min/Max finding logic[cite: 7, 14].
+***STL Containers**: Usage patterns and method summaries for **Vectors**, **Deque**, **Pairs**, and **Sets**.
+* **Data Structure Comparisons**: Differences between **Ordered Containers** (Red-Black Trees) and **Unordered Containers** (Hash Tables) regarding performance (O(log n) vs O(1)) and memory usage.
+***Mathematical Utilities**: Functions for Base Conversion (Decimal to Base-N), Prime Checking, and Min/Max finding logic.
 
 ## 🚀 How to Run
 To compile and run any of the C++ files, you can use a standard compiler like `g++`.
