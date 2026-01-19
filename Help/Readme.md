@@ -399,23 +399,143 @@ b = temp;
 
 ### Sorting Theory & Complexity
 
-Summary of sorting algorithms and their behaviors.
+#### Sorting Algorithms Comparison Table
 
-#### 1. Iterative (Comparison)
+| Algorithm | Best Case | Average Case | Worst Case | Space Complexity | Stable? | In-Place? |
+|-----------|-----------|--------------|------------|------------------|---------|-----------|
+| **Bubble Sort** | O(n) | O(n²) | O(n²) | O(1) | ✓ Yes | ✓ Yes |
+| **Selection Sort** | O(n²) | O(n²) | O(n²) | O(1) | ✗ No | ✓ Yes |
+| **Insertion Sort** | O(n) | O(n²) | O(n²) | O(1) | ✓ Yes | ✓ Yes |
+| **Merge Sort** | O(n log n) | O(n log n) | O(n log n) | O(n) | ✓ Yes | ✗ No |
+| **Quick Sort** | O(n log n) | O(n log n) | O(n²) | O(log n) | ✗ No | ✓ Yes |
+| **Heap Sort** | O(n log n) | O(n log n) | O(n log n) | O(1) | ✗ No | ✓ Yes |
+| **Counting Sort** | O(n+k) | O(n+k) | O(n+k) | O(k) | ✓ Yes | ✗ No |
+| **Radix Sort** | O(d(n+k)) | O(d(n+k)) | O(d(n+k)) | O(n+k) | ✓ Yes | ✗ No |
+| **Bucket Sort** | O(n+k) | O(n+k) | O(n²) | O(n) | ✓ Yes | ✗ No |
 
-- **Selection Sort**: O(n²) — Finds min in unsorted part, swaps with current index. Space O(1)
-- **Bubble Sort**: O(n²) — Bubbles largest element to end via adjacent swaps. Best case O(n)
-- **Insertion Sort**: O(n²) — Builds sorted array one item at a time. Best case O(n)
+**Legend:**
+- **k** = range of input values
+- **d** = number of digits
+- **Stable**: Maintains relative order of equal elements
+- **In-Place**: Requires O(1) or O(log n) extra space
 
-#### 2. Recursive (Divide & Conquer)
+---
 
-- **Merge Sort**: O(n log n) (All cases) — Splits array, sorts halves, merges them. Space O(n)
-- **Quick Sort**: O(n log n) Avg, O(n²) Worst — Uses pivots to partition. Space O(log n)
+#### Detailed Algorithm Breakdown
 
-#### 3. Non-Comparison
+##### 1. Comparison-Based Iterative Sorts
 
-- **Counting Sort**: O(n+k) — Frequency counting. Space O(k)
-- **Radix Sort**: O(d(n+k)) — Digit-by-digit sorting
+**Bubble Sort**
+- **Method**: Repeatedly swaps adjacent elements if they're in wrong order
+- **Best Case**: O(n) when array is already sorted (with optimization flag)
+- **When to Use**: Small datasets, educational purposes, nearly sorted data
+- **Key Feature**: Simple but inefficient for large datasets
+
+**Selection Sort**
+- **Method**: Finds minimum element from unsorted part and puts it at beginning
+- **Why Always O(n²)**: Always scans remaining array regardless of order
+- **When to Use**: Memory writes are costly (minimizes swaps)
+- **Key Feature**: Makes minimum number of swaps (n-1)
+
+**Insertion Sort**
+- **Method**: Builds sorted array one item at a time
+- **Best Case**: O(n) when array is already sorted
+- **When to Use**: Small datasets, nearly sorted data, online sorting
+- **Key Feature**: Efficient for small arrays and partially sorted data
+
+---
+
+##### 2. Divide & Conquer Sorts (Recursive)
+
+**Merge Sort**
+- **Method**: Divides array into halves, sorts them, then merges
+- **Guaranteed Performance**: Always O(n log n)
+- **When to Use**: Linked lists, external sorting, when stability is required
+- **Key Feature**: Stable and predictable, but requires extra space
+- **Drawback**: O(n) extra space needed
+
+**Quick Sort**
+- **Method**: Picks pivot, partitions array around it, recursively sorts partitions
+- **Average Performance**: O(n log n) with good pivot selection
+- **Worst Case**: O(n²) when pivot is always smallest/largest (sorted array)
+- **When to Use**: General purpose sorting, in-place sorting needed
+- **Optimization**: Use randomized pivot or median-of-three
+- **Key Feature**: Fastest in practice for average cases
+
+
+
+---
+
+##### 3. Non-Comparison Sorts
+
+**Counting Sort**
+- **Method**: Counts occurrences of each value, reconstructs sorted array
+- **Complexity**: O(n+k) where k is range of input
+- **When to Use**: Small range of integers, k is not significantly larger than n
+- **Key Feature**: Linear time for suitable data
+- **Limitation**: Only works for integers or discrete values
+
+**Radix Sort**
+- **Method**: Sorts digit by digit using stable sort (like counting sort)
+- **Complexity**: O(d(n+k)) where d is number of digits
+- **When to Use**: Sorting integers, strings of fixed length
+- **Key Feature**: Can be faster than O(n log n) for suitable data
+- **Requirement**: Requires stable sub-sort algorithm
+
+
+
+---
+
+#### Sorting Algorithm Decision Guide
+
+| Scenario | Recommended Algorithm | Reason |
+|----------|----------------------|---------|
+| Small array (n < 10) | Insertion Sort | Low overhead, simple |
+| Nearly sorted data | Insertion Sort | O(n) best case |
+| Large random data | Quick Sort | Best average performance |
+| Guaranteed O(n log n) | Merge Sort or Heap Sort | No worst case degradation |
+| Stability required | Merge Sort | Maintains relative order |
+| Limited memory | Heap Sort or Quick Sort | In-place algorithms |
+| Integer data, small range | Counting Sort | Linear time |
+| Linked list | Merge Sort | No random access needed |
+| External sorting | Merge Sort | Works well with sequential access |
+
+---
+
+#### Stability Explained
+
+**Stable Sort**: Preserves the relative order of elements with equal keys.
+
+Example: Sorting students by grade, then by name.
+- **Stable** algorithms maintain the name order for students with same grade
+- **Unstable** algorithms may change the relative positions
+
+**Stable Algorithms**: Bubble, Insertion, Merge, Counting, Radix, Bucket  
+**Unstable Algorithms**: Selection, Quick, Heap
+
+---
+
+#### C++ STL sort()
+
+```cpp
+#include <algorithm>
+sort(arr, arr + n);           // Sort array
+sort(v.begin(), v.end());     // Sort vector
+sort(all(v));                 // Using macro: #define all(x) (x).begin(), (x).end()
+
+// Custom comparator (descending)
+sort(v.begin(), v.end(), greater<int>());
+
+// Custom comparator function
+bool cmp(int a, int b) { return a > b; }
+sort(v.begin(), v.end(), cmp);
+```
+
+**STL sort() Details**:
+- **Algorithm Used**: IntroSort (hybrid of Quick Sort, Heap Sort, and Insertion Sort)
+- **Time Complexity**: O(n log n) average and worst case
+- **Stability**: `sort()` is **not stable**, use `stable_sort()` if stability is needed
+- **When to Use**: Default choice for most competitive programming problems
 
 ---
 
